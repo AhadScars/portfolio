@@ -554,7 +554,28 @@
     }
     .rlink:hover{gap:9px;color:var(--accent)}
 
-    .proj-card{padding:1.8rem;height:100%;display:flex;flex-direction:column}
+    .proj-card{padding:1.8rem;height:100%;display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .proj-card::after{
+      content:'';position:absolute;top:0;left:-75%;width:45%;height:100%;
+      background:linear-gradient(100deg,transparent,rgba(16,185,129,.18),transparent);
+      transform:skewX(-18deg);pointer-events:none;
+    }
+    .reveal.vis .proj-card::after{animation:cardShine 1.15s .25s ease both}
+    @keyframes cardShine{to{left:140%}}
+    .proj-ul li{opacity:0;transform:translateX(-10px)}
+    .reveal.vis .proj-ul li{animation:liIn .5s ease forwards}
+    .reveal.vis .proj-ul li:nth-child(1){animation-delay:.12s}
+    .reveal.vis .proj-ul li:nth-child(2){animation-delay:.22s}
+    .reveal.vis .proj-ul li:nth-child(3){animation-delay:.32s}
+    .reveal.vis .proj-ul li:nth-child(4){animation-delay:.42s}
+    @keyframes liIn{to{opacity:1;transform:none}}
+    .bank-card{animation:bankPulse 3.4s ease-in-out infinite}
+    @keyframes bankPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+      50%{box-shadow:0 0 0 5px rgba(16,185,129,.1),0 16px 40px rgba(16,185,129,.16)}
+    }
+    .bank-card .proj-icon i{display:inline-block;animation:coinFlip 3.2s ease-in-out infinite}
+    @keyframes coinFlip{0%,100%{transform:rotateY(0)}50%{transform:rotateY(180deg)}}
     .proj-icon{
       width:50px;height:50px;border-radius:16px;
       background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(245,158,11,.1));
@@ -668,7 +689,6 @@
         <li><a class="nav-link" href="#experience">Experience</a></li>
         <li><a class="nav-link" href="#education">Education</a></li>
         <li><a class="nav-link" href="#skills">Skills</a></li>
-        <li><a class="nav-link" href="#ai-projects">AI Projects</a></li>
         <li><a class="nav-link" href="#projects">Projects</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
@@ -700,7 +720,7 @@
         </div>
         <div class="h-stats" id="statsWrap">
           <div class="stat-pill"><div><div class="snum" data-count="2">0</div><div class="slbl">Internships</div></div></div>
-          <div class="stat-pill"><div><div class="snum" data-count="6">0</div><div class="slbl">Projects</div></div></div>
+          <div class="stat-pill"><div><div class="snum" data-count="4">0</div><div class="slbl">Projects</div></div></div>
           <div class="stat-pill"><div><div class="snum" data-count="7" data-suf=".65">0</div><div class="slbl">MCA CGPA</div></div></div>
           <div class="stat-pill"><div><div class="snum" data-count="6" data-suf="+">0</div><div class="slbl">Technologies</div></div></div>
         </div>
@@ -1059,7 +1079,7 @@
   </div>
 </section>
 
-<!-- ════ AI PROJECTS ════ -->
+<!-- ════ AI PROJECTS (commented out) ════
 <section id="ai-projects" class="s-alt">
   <div class="container">
     <div class="row mb-5">
@@ -1122,6 +1142,7 @@
     </div>
   </div>
 </section>
+════ end AI PROJECTS ════ -->
 
 <!-- ════ PROJECTS ════ -->
 <section id="projects">
@@ -1135,6 +1156,22 @@
       </div>
     </div>
     <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="c-card proj-card bank-card">
+          <div class="proj-icon"><i class="bi bi-bank2"></i></div>
+          <div class="proj-name">Secure Banking System</div>
+          <ul class="proj-ul">
+            <li>Spring Boot REST API for customers, savings and current accounts, and money movement.</li>
+            <li>JWT authentication with Spring Security on protected banking endpoints.</li>
+            <li>Deposits, withdrawals, and transfers with balance, status, and uniqueness checks.</li>
+            <li>MySQL via JPA/Hibernate, unique account numbers, and full transaction history.</li>
+          </ul>
+          <div class="proj-foot">
+            <a href="https://github.com/AhadScars/Secure-Banking-REST-API-Spring-Boot-JWT" target="_blank" class="rlink" style="margin-top:0"><i class="bi bi-github"></i> Repository <i class="bi bi-arrow-right-short"></i></a>
+            <span class="ptag ms-auto">Spring Boot</span><span class="ptag">JWT</span><span class="ptag">MySQL</span>
+          </div>
+        </div>
+      </div>
       <div class="col-lg-4 col-md-6 reveal">
         <div class="c-card proj-card">
           <div class="proj-icon"><i class="bi bi-cart-fill"></i></div>
